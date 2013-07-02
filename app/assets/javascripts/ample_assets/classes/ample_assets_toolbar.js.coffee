@@ -493,21 +493,21 @@ class window.AmpleAssetsToolbar extends CoffeeCup
     @tab_events()
     ref = this
     # Collapse toolbar
-    $("##{@options.id} a.collapse").live 'click', =>
+    $("##{@options.id} a.collapse").on 'click', =>
       @toggle()
     # Reload the first tab following a successful upload. 
     $('body').bind 'ample_uploadify.complete', =>
       @reload(0)
     # Bind event to succesful deletion of an asset.
-    $("a.asset-delete").live 'ajax:success', ->
+    $("a.asset-delete").on 'ajax:success', ->
       id = parseInt $(this).attr('data-id')
       ref.delete(id)
     # Bind live event to any asset-remove element.
-    $("a.asset-remove").live 'click', ->
+    $("a.asset-remove").on 'click', ->
       ref.remove(this)
       false
     # Bind `toggle()` method to toolbar handle.
-    $("##{@options.id}-handle").live 'click', =>
+    $("##{@options.id}-handle").on 'click', =>
       @toggle()
       false
   
@@ -525,7 +525,7 @@ class window.AmpleAssetsToolbar extends CoffeeCup
   # Open modal window when clicking an asset contained with a drop-target.
   drop_events: ->
     ref = this
-    $('.asset-drop .droppable a').live 'click', ->
+    $('.asset-drop .droppable a').on 'click', ->
       id = $(this).attr("href")
       $.get $(this).attr("href"), (response) ->
         ref.modal_open(response)
@@ -535,9 +535,9 @@ class window.AmpleAssetsToolbar extends CoffeeCup
   # Toggle the active state of key_events when user focuses / blurs on textareas or input fields.
   field_events: ->
     @log "field_events()"
-    $('textarea, input').live 'blur', =>
+    $('textarea, input').on 'blur', =>
       @keys_enabled = true
-    $('textarea, input').live 'focus', =>
+    $('textarea, input').on 'focus', =>
       @keys_enabled = false
   
   # Bind `reload()` method to assets-reload button. 
@@ -549,7 +549,7 @@ class window.AmpleAssetsToolbar extends CoffeeCup
   
   # Builds the markup for an asset dropped into a textarea. 
   resize_events: ->
-    $('.asset-resize').live 'click', =>
+    $('.asset-resize').on 'click', =>
       constraints = $('#asset-constraints').val()
       uid = $('#asset-uid').val()
       width = $('#asset-width').val()
