@@ -750,7 +750,7 @@ class window.AmpleAssetsToolbar extends CoffeeCup
 
 # Extend draggable to elements added to the DOM after page load. 
 jQuery.fn.liveDraggable = (opts) ->
-  @live "mouseover", ->
+  @on "mouseover", ->
     $(this).data("init", true).draggable opts  unless $(this).data("init")
     
 # Insert `value` at the cursor position of the currently focused textarea or input field.
